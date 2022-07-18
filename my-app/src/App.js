@@ -1,4 +1,5 @@
 import React from 'react'
+import  './App.css'
 
 class App extends React.Component{
 constructor(){
@@ -16,7 +17,7 @@ handleEmailChange = (e) =>{
 
   const regex = new RegExp(/^[\w\.]+@([\w-]+\.)+[\w-]{2,4}$/);
 
-  if (regex.test(e.target.value)) {
+  if ( regex.test(e.target.value)) {
       this.setState({ emailIsValid: true });
   }
 
@@ -24,17 +25,16 @@ handleEmailChange = (e) =>{
 console.log("mail:",this.state.email);
 }
 handlePasswordChange = (e) =>{
-   let length = 10
-  if(length < 5){
-  alert('mot de pass non valid')
-  }
-  else{
-    this.setState({ password: e.target.value });
+
+  const long1 = this.state.password.split(' ')
+  const long2 =  long1.length
+  if(long2 >= 5){
     this.setState({passwordIsValid: true})
-console.log("password:" ,this.state.password);
+     this.setState({ password: e.target.value });
+    console.log("password:" ,this.state.password);
 
+   }
 
-  }
 
 }
 handleSubmit = (e) =>{
@@ -52,16 +52,16 @@ handleSubmit = (e) =>{
     return(
       <>
   <form onSubmit={this.handleSubmit}>
-      <label>
+      <label >
             Adress mail:
-            <input type="mail" id='mail'  value={this.state.email} onChange={this.handleEmailChange}/>
+            <input type="mail" className='input' id='mail'  value={this.state.email} onChange={this.handleEmailChange}/>
       </label><br/>
       <label>
           Mot de pass:
-          <input type="password" value={this.state.password } onChange={this.handlePasswordChange} />
+          <input type="password"  className='input' value={this.state.password } onChange={this.handlePasswordChange} />
       </label><br/>
 
-      <input type="checkbox" name='remember Me' id='remember Me'/>
+      <input type="checkbox" name='remember Me' id='remember Me' className='input'/>
       <label>remember me</label><br/>
 
       <input type="submit" />
